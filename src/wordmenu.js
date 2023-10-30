@@ -48,8 +48,9 @@ class Word {
   //{ name { data } }
   altDefinitionsSet = {};
   
-  constructor( { title, definition, categories, personas } ){
+  constructor( { title, prettyTitle, definition, categories, personas } ){
     this.title = title;
+    this.prettyTitle = prettyTitle;
     this.definition = definition;
     this.categories = categories;
     // this.personas = personas; // Allowed list????
@@ -60,9 +61,10 @@ class Word {
 }
 
 class AltDefinition{
-  constructor( { persona, title, definition } ){
+  constructor( { persona, title, prettyTitle, definition } ){
     this.persona = persona;
     this.title = title;
+    this.prettyTitle = prettyTitle;
     this.definition = definition;
   }
 }
@@ -97,3 +99,26 @@ w1.addAlt(new AltDefinition({
 }));
 
 WORDS.add(w1);
+
+
+
+{
+let w1 = new Word({
+  title:"BigData", 
+  prettyTitle: "Big Data",
+  definition: "Large and complex data sets that cannot be easily managed or processed using traditional data processing applications.",
+  categories:["tech"]
+  // personas:["base", "trump"]
+});
+
+w1.addAlt(new AltDefinition({
+  persona: "person",
+  title: "BigData",
+  prettyTitle: "Big Data",
+  definition: "That like Big brother? Get out of here"
+}));
+
+WORDS.add(w1);
+// debugger
+
+}

@@ -8,7 +8,10 @@ import { WORDS } from './wordmenu.js';
 
 
 
-import { Personas } from './personas.js';
+// import { Personas } from './personas.js';
+
+
+import { DefinitionCard } from './definitionCard.js';
 
 
 // import { styled } from 'styled-components';
@@ -20,10 +23,10 @@ const internals = {};
 
 function App() {
 
-  let currentPersona = Personas.set.base;
-
-  const [persona,setPersona] = useState(Personas.set.base);
-  
+  // let currentPersona = Personas.set.base;
+  // 
+  // const [persona,setPersona] = useState(Personas.set.base);
+  // 
   // function speak(mode){
   //   switch (mode) {
   //     case MODES.trumpo:
@@ -36,10 +39,10 @@ function App() {
   // 
   //   }
   // }
-  
-  function changePersona(per){
-    setPersona(per);
-  }
+  // 
+  // function changePersona(per){
+  //   setPersona(per);
+  // }
   
 
   return (
@@ -47,22 +50,10 @@ function App() {
     <div className="App">
       <ul className="djkfngkjdfng">
         <li>
-          <button className="buuuton" id="mmm" onClick={()=>changePersona(Personas.set.person)} >Person Lens</button>
-          <div>   
-            <h2>{WORDS.set.computer.title}</h2>
-              { persona === Personas.set.base && 
-                <p>{WORDS.set.computer.definition}</p>
-              }
-              { persona === Personas.set.person && 
-                <p>{WORDS.set.computer.altDefinitionsSet.person.definition}</p>
-              }
-          </div>
-          
-          {/*
-            
-            // <h2>{ksjdnflsd === "owowo" ?msdknf:sdknfds}</h2>
-          */}
-          <strong>I am a robo bot</strong>
+          <DefinitionCard title={WORDS.set.computer.title}  />
+        </li>
+        <li>
+          <DefinitionCard title={WORDS.set.bigdata.title}  />
         </li>
       </ul>
     </div>

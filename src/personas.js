@@ -14,6 +14,11 @@ class Persona{
   }
 }
 
+
+// function changePersona(per){
+//   setPersona(per);
+// }
+
 Personas.add({name: "base"});
 Personas.add({name: "trump"});
 Personas.add({name: "nerd"});
