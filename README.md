@@ -3,8 +3,11 @@
 
 https://www.npmjs.com/package/styled-components
 
+not using vite yet
 
-
+npm run build
+python3 -m http.server 9000
+http://localhost:9000/
 
 
 
