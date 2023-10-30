@@ -22,7 +22,14 @@
 
 export const WORDS = {
   version : 0,
-  cache1 : []
+  cache1 : [],
+  titles : {},
+  set : {},
+  add(word){
+    this.cache1.push(word);
+    this.titles[word.title] = word.title;
+    this.set[word.title] = word;
+  }
 };
 
 
@@ -38,7 +45,7 @@ class Word {
 }
 
 
-WORDS.cache1.push(new Word({
+WORDS.add(new Word({
   title:"Tacos", 
   definition: "Mexican Cooking. a tortilla filled with various ingredients, as beans, rice, chopped meat, cheese, and tomatoes, and folded over in half or rolled into a loose cylinder shape:",
   categories:["food", "nummy", "tacos!!!"]
