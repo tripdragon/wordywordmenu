@@ -53,14 +53,7 @@ function App() {
     }
     wordmenu.foods.words.tacos.modes.base.body
   }
-  
-  // <style>
-  // .aaa{
-  //   padding: 200px;
-  // 
-  // }
-  // </style>
-  // 
+
   return (
     <>
     <div className="App">
