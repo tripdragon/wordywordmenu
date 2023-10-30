@@ -22,32 +22,33 @@ const internals = {};
 
 
 function App() {
-
-  // let currentPersona = Personas.set.base;
-  // 
-  // const [persona,setPersona] = useState(Personas.set.base);
-  // 
-  // function speak(mode){
-  //   switch (mode) {
-  //     case MODES.trumpo:
-  // 
-  //       break;
-  //     case MODES.pickles:
-  // 
-  //       break;
-  //     default:
-  // 
-  //   }
-  // }
-  // 
-  // function changePersona(per){
-  //   setPersona(per);
-  // }
   
+  // early figuring out what the schema is like
+  // as .map is not avaialble in an object
+  
+  function BuildList(){
+    // const gg = WORDS.set.map( x =>{
+    const gg = [];
+    Object.keys(WORDS.set).forEach(key => {
+      const title = WORDS.set[key].title;
+      gg.push(
+      <li key={title} >
+        <DefinitionCard title={title}  />
+      </li>
+      );
+    });
+    
+    return <ul className="djkfngkjdfng">{gg}</ul>;
+  }
 
   return (
     <>
     <div className="App">
+    
+    <BuildList />
+    
+    {/*
+    
       <ul className="djkfngkjdfng">
         <li>
           <DefinitionCard title={WORDS.set.computer.title}  />
@@ -56,6 +57,7 @@ function App() {
           <DefinitionCard title={WORDS.set.bigdata.title}  />
         </li>
       </ul>
+    */}
     </div>
     </>
   );
