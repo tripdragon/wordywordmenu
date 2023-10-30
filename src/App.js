@@ -19,79 +19,50 @@ const internals = {};
 
 
 function App() {
-  const ksjdnflsd = "narf";
-  const msdknf = "mwmwmmw";
-  const sdknfds = "4444";
 
   let currentPersona = Personas.set.base;
 
+  const [persona,setPersona] = useState(Personas.set.base);
   
-  const MODES = {
-    trumpo : "trumpo" , pickles : "pickles", base : "base"
+  // function speak(mode){
+  //   switch (mode) {
+  //     case MODES.trumpo:
+  // 
+  //       break;
+  //     case MODES.pickles:
+  // 
+  //       break;
+  //     default:
+  // 
+  //   }
+  // }
+  
+  function changePersona(per){
+    setPersona(per);
   }
   
-  const [modes,setModes] = useState(MODES.base);
-  
-  const [personas,setPersonas] = useState(Personas.set.base);
-  
-  function speak(mode){
-    switch (mode) {
-      case MODES.trumpo:
-          
-        break;
-      case MODES.pickles:
-        
-        break;
-      default:
-        
-    }
-  }
-  
-  function sdkjfsd(){
-    // setModes(MODES.trumpo);
-    setPersonas(Personas.set.trump);
-  }
-  
-  
-  function getMeDatas(mode, word) {
-    // switch (mode) {
-    //   case MODES.trumpo:
-    // 
-    //     break;
-    //   case MODES.pickles:
-    // 
-    //     break;
-    //   default:
-    // 
-    // }
-    // wordmenu.foods.words.tacos.modes.base.body
-  }
 
   return (
     <>
     <div className="App">
       <ul className="djkfngkjdfng">
         <li>
-          <button className="buuuton" id="mmm" onClick={()=>sdkjfsd()} > SAY TRUMP!!!</button>
+          <button className="buuuton" id="mmm" onClick={()=>changePersona(Personas.set.person)} >Person Lens</button>
           <div>   
-            <h2>{WORDS.set.tacos.title}</h2>   
-          
-            { personas === Personas.set.base && 
-              <p>{WORDS.set.tacos.definition}</p>
-            }
-            { personas === Personas.set.trump && 
-              <p>{WORDS.set.tacos.altDefinitionsSet.trump.definition}</p>
-            }
-          
-          
-          
+            <h2>{WORDS.set.computer.title}</h2>
+              { persona === Personas.set.base && 
+                <p>{WORDS.set.computer.definition}</p>
+              }
+              { persona === Personas.set.person && 
+                <p>{WORDS.set.computer.altDefinitionsSet.person.definition}</p>
+              }
           </div>
           
           {/*
             
             // <h2>{ksjdnflsd === "owowo" ?msdknf:sdknfds}</h2>
           */}
-          <strong>I am a turkey bot</strong>
+          <strong>I am a robo bot</strong>
         </li>
       </ul>
     </div>

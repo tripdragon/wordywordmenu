@@ -18,3 +18,4 @@ Personas.add({name: "base"});
 Personas.add({name: "trump"});
 Personas.add({name: "nerd"});
 Personas.add({name: "technical"});
+Personas.add({name: "person"});
