@@ -39,6 +39,7 @@ export function DefinitionCard({title}){
       
       // <h2>{ksjdnflsd === "owowo" ?msdknf:sdknfds}</h2>
     */}
+    <button className="buuuton" id="mmm" onClick={()=>changePersona(Personas.set.base)} >Base Lens</button>
     <button className="buuuton" id="mmm" onClick={()=>changePersona(Personas.set.person)} >Person Lens</button>
     </>
   )
