@@ -93,7 +93,7 @@ let w1 = new Word({
 w1.addAlt(new AltDefinition({
   persona: "person",
   title: "computer",
-  definition: "An expenssive nessesary device that does a bad job at finding the email you know you just read."
+  definition: "An expensive necessary device that does a bad job at finding the email you know you just read."
 }));
 
 WORDS.add(w1);
