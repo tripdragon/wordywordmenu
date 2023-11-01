@@ -24,20 +24,35 @@ window._o = _o;
 
 // import { styled } from 'styled-components';
 
-window.wwwords = WORDS;
+// window.wwwords = WORDS;
 
-const internals = {};
+// const internals = {};
 
 
 // window.shortDatabase = shortDatabase;
-// var key = _o.technology.length-1;
-// var key = -1;
+
+
+function buildKeys(data){
+  // for keys and then keep 
+  for (var i = 0; i < data.length; i++) {
+    data[i].key = i;
+  }
+}
+buildKeys(_o.technology);
+let key_tech = _o.technology[_o.technology.length-1].key;
+
+
+buildKeys(_o.boardgames);
+let key_boardgames = _o.boardgames[_o.boardgames.length-1].key;
+
+
 
 // for keys and then keep 
-for (var i = 0; i < _o.technology.length; i++) {
-  _o.technology[i].key = i;
-}
-let key = _o.technology[_o.technology.length-1].key;
+// for (var i = 0; i < _o.technology.length; i++) {
+//   _o.technology[i].key = i;
+// }
+// let key = _o.technology[_o.technology.length-1].key;
+
 
 
 function App() {
@@ -47,32 +62,36 @@ function App() {
   
   const [tech, setTech] = useState(_o.technology);
   
+  const [boardgames, setBoardgames] = useState(_o.boardgames);
+  
   function addArticle(ev){
     ev.preventDefault();
     // debugger
-    key++;
-    console.log("sdkjnfd", key, ev.target.title.value, ev.target.definition.value);
-    _o.technology.push({key:key,title:ev.target.title.value, definition:ev.target.definition.value})
+    key_tech++;
+    console.log("sdkjnfd", key_tech, ev.target.title.value, ev.target.definition.value);
+    _o.technology.push({key:key_tech,title:ev.target.title.value, definition:ev.target.definition.value})
     // reverse here to debug with on top
     setTech([..._o.technology].reverse())
   }
-
-  function BuildList(){
-    // const gg = WORDS.set.map( x =>{
-    const gg = [];
-    Object.keys(WORDS.set).forEach(key => {
-      const title = WORDS.set[key].title;
-      gg.push(
-      <li key={title} >
-        <DefinitionCard title={title}  />
-      </li>
-      );
-    });
-    
-    return <ul className="djkfngkjdfng">{gg}</ul>;
-  }
   
   
+  // 
+  // function BuildList(){
+  //   // const gg = WORDS.set.map( x =>{
+  //   const gg = [];
+  //   Object.keys(WORDS.set).forEach(key => {
+  //     const title = WORDS.set[key].title;
+  //     gg.push(
+  //     <li key={title} >
+  //       <DefinitionCard title={title}  />
+  //     </li>
+  //     );
+  //   });
+  // 
+  //   return <ul className="djkfngkjdfng">{gg}</ul>;
+  // }
+  // 
+  // 
 
   return (
     <>
@@ -82,42 +101,21 @@ function App() {
     <DataInputs handleSubmit={(ev) => addArticle(ev) } />
     
     
+    <nav id="alphabet-nav">
+      <button className="" link="_t">a</button>
+      <button className="">b</button>
+    </nav>
     
-    <section>
+    <section className="category">
       <h2>Technology</h2>
-{/*      
-      <article class="">
-        <h3>Artificial Intelligence (AI)</h3>
-        <p>The simulation of human intelligence in machines that are programmed to think and learn like humans.</p>
-      </article>
-      
-      <article class="">
-        <h3>Machine Learning</h3>
-        <p>A subset of AI that enables computers to learn and improve from experience without being explicitly programmed.</p>
-      </article>
-      // ArticleWord(x.title, x.definition);
-      */}
-      
-    {/*   
-      {
-        shortDatabase.categories.technology.map((x)=>
-          <ArticleWord key={x.title} title={x.title} definition={x.definition} />
-        )
-        
-      }
-        */}
-      
-      
-      
-      
-
-        {
-          
-          tech.map((x)=>
-            <ArticleWord key={x.key} title={x.title} definition={x.definition} article={x} />
-          )
-          
-        }
+      { tech.map( (x) => <ArticleWord key={x.key} title={x.title} definition={x.definition} article={x} /> ) }
+    </section>
+    
+    <hr />
+    
+    <section className="category" id="_t">
+      <h2>Board Games</h2>
+      { boardgames.map( (x) => <ArticleWord key={x.key} title={x.title} definition={x.definition} article={x} /> ) }
     </section>
     
     

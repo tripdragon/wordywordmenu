@@ -7,35 +7,29 @@ import DefinitionCard from './definitionCard.js';
 
 export default function ArticleWord({title, definition, article}){
   
-  
-  // let currentPersona = "original";
-  // 
-  
+
   const basePersona = "original";
   const [persona,setPersona] = useState(basePersona);
   
-  // 
-  // 
-  // 
+
   function changePersona(per){
     setPersona(per);
   }
 
+  // this conditional look up alt definitions could be solved with
+  // making the original data have a key as well and force a Type like a struct
   
   if (article && article.altDefinitions && article.altDefinitions.length > 0){
     
     let _definition = definition;
     
     if (persona !== basePersona) {
-      // debugger
       article.altDefinitions.forEach((item, i) => {
-        // debugger
         if (item.persona === persona) {
           _definition = item.definition;
         }
       });
     }
-    
     
     return(
       <article className="">
@@ -44,8 +38,8 @@ export default function ArticleWord({title, definition, article}){
         <p>{_definition}</p>
 
         <div className="persona-article-nav">
-          <button className="wwbuuuton" id="mmm" onClick={()=>changePersona(basePersona)} >Original</button>
-          <button className="wwbuuuton" id="mmm" onClick={()=>changePersona(article.altDefinitions[0].persona)} >{article.altDefinitions[0].persona}</button>
+          <button className="wwbuuuton" onClick={()=>changePersona(basePersona)} >Original</button>
+          <button className="wwbuuuton" onClick={()=>changePersona(article.altDefinitions[0].persona)} >{article.altDefinitions[0].persona}</button>
         </div>
       </article>
     );
