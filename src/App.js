@@ -98,25 +98,28 @@ function App() {
 
     <div className="App">
     
-    <DataInputs handleSubmit={(ev) => addArticle(ev) } />
-    
+    <h1>Word Menu NEW NEW!! </h1>
     
     <nav id="alphabet-nav">
       <button className="" link="_t">a</button>
       <button className="">b</button>
     </nav>
     
-    <section className="category">
-      <h2>Technology</h2>
-      { tech.map( (x) => <ArticleWord key={x.key} title={x.title} definition={x.definition} article={x} /> ) }
-    </section>
-    
-    <hr />
-    
-    <section className="category" id="_t">
-      <h2>Board Games</h2>
-      { boardgames.map( (x) => <ArticleWord key={x.key} title={x.title} definition={x.definition} article={x} /> ) }
-    </section>
+    <div class="groups">
+      <section className="category">
+      
+      <DataInputs handleSubmit={(ev) => addArticle(ev) } />
+      
+        <h2>Technology</h2>
+        { tech.map( (x) => <ArticleWord key={x.key} title={x.title} definition={x.definition} article={x} /> ) }
+      </section>
+      
+      
+      <section className="category" id="_t">
+        <h2>Board Games</h2>
+        { boardgames.map( (x) => <ArticleWord key={x.key} title={x.title} definition={x.definition} article={x} /> ) }
+      </section>
+    </div>
     
     
     
