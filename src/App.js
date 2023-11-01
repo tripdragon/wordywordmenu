@@ -7,6 +7,7 @@ import './App.css';
 import { WORDS } from './wordmenu.js';
 
 import { shortDatabase } from './shortDatabase.js';
+import ArticleWord from './articleWord.js';
 
 
 
@@ -72,14 +73,6 @@ function App() {
   }
   
   
-  function ArticleWord({title, definition}){
-    return(
-      <article className="">
-        <h3>{title}</h3>
-        <p>{definition}</p>
-      </article>
-    );
-  }
 
   return (
     <>
@@ -121,7 +114,7 @@ function App() {
         {
           
           tech.map((x)=>
-            <ArticleWord key={x.key} title={x.title} definition={x.definition} />
+            <ArticleWord key={x.key} title={x.title} definition={x.definition} article={x} />
           )
           
         }

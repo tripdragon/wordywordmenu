@@ -56,3 +56,12 @@ section article p{
 .data-form{
   text-align: left;
 }
+
+
+.persona-article-nav{
+  margin: 4px 0;
+
+}
+.persona-article-nav button{
+  margin-right: 4px;
+}

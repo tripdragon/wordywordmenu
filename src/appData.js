@@ -7,7 +7,21 @@ export const _o = {
   //   {key:1,title: "Machine Learning", definition: "A subset of AI that enables computers to learn and improve from experience without being explicitly programmed."},
   //   {key:2,title: "Internet of Things (IoT)", definition: "The network of physical devices, vehicles, appliances, and other objects embedded with sensors, software, and connectivity to exchange data over the internet."},
   // ]
+  // "tech jargon" : [
   technology : [
+      {
+        title:"computer", 
+        definition: "A programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations. Mainframes, desktop and laptop computers, tablets, and smartphones are some of the different types of computers.",
+        categories:["tech"],
+        // personas:["base", "trump"]
+        altDefinitions:[
+          {
+            persona: "person",
+            title: "computer",
+            definition: "An expensive necessary device that does a bad job at finding the email you know you just read."
+          }
+        ]
+      },
       { "title": "Artificial Intelligence (AI)", "definition": "The simulation of human intelligence in machines that are programmed to think and learn like humans." },
       { "title": "Machine Learning", "definition": "A subset of AI that enables computers to learn and improve from experience without being explicitly programmed." },
       { "title": "Internet of Things (IoT)", "definition": "The network of physical devices, vehicles, appliances, and other objects embedded with sensors, software, and connectivity to exchange data over the internet." },
