@@ -1,7 +1,29 @@
 
 // import { Personas } from './personas.js';
+import { CATEGORIES } from './categories.js';
 
 /*
+
+  Try 2
+  
+  Word is unique to a category
+  Category is Unique, has_many words
+  In each Category a word has one base definition and many other persona definitions
+  
+  OR
+  
+  Word is unique
+  Category is Unique
+  Word retains all data but some data might get lost if categories change name or replaced
+  So thats not a good system
+  
+  We would also have sub sections or Topics
+  
+  So
+  Topic : Tech
+    » Subjects : .coms, amazon, shopping, AR, 
+      » SubTopic ....
+      
 
   ~A Word is unique, it belongs_to_many categories~
   has_many definitions
@@ -22,19 +44,6 @@
   Some start definitions taken from https://www.dictionary.com/
   
 */
-
-
-export const CATEGORIES = {
-  version : 0,
-  cache1 : [],
-  titles : {},
-  set : {},
-  add(cat){
-    this.cache1.push(cat);
-    this.titles[cat.title.toLowerCase()] = cat.title.toLowerCase();
-    this.set[cat.title.toLowerCase()] = cat;
-  }
-};
 
 
 

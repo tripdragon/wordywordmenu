@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+section{
+  text-align: left;
+}
+section article{
+  margin-bottom: 1.2rem;
+}
+section article h3{
+  display: inline;
+  padding-right: 4px;
+}
+section article p{
+  display: inline;
+}
+
+.data-form{
+  text-align: left;
+}
