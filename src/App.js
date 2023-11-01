@@ -16,7 +16,7 @@ import { shortDatabase } from './shortDatabase.js';
 
 
 import { DefinitionCard } from './definitionCard.js';
-// import DataInputs from './dataInputs.js';
+import DataInputs from './dataInputs.js';
 
 import { _o } from './appData.js';
 window._o = _o;
@@ -38,37 +38,15 @@ function App() {
   
   const [tech, setTech] = useState(_o.technology);
   
-  function DataInputs() {
-
-    function handleSubmit(ev){
-      ev.preventDefault();
-      // debugger
-      key++;
-      console.log("sdkjnfd", key, ev.target.title.value, ev.target.definition.value);
-      _o.technology.push({key:key,title:ev.target.title.value, definition:ev.target.definition.value})
-      setTech([..._o.technology])
-    }
-    
-    return (
-
-      <form className="data-form" onSubmit={handleSubmit}>
-
-        <label>
-          title: <input name="title" />
-        </label>
-        <hr />
-        <label>
-          definition: <textarea name="definition" />
-        </label>
-        <input type="submit" value="Submit" />
-        <hr />
-      </form>
-
-    );
+  function addArticle(ev){
+    ev.preventDefault();
+    // debugger
+    key++;
+    console.log("sdkjnfd", key, ev.target.title.value, ev.target.definition.value);
+    _o.technology.push({key:key,title:ev.target.title.value, definition:ev.target.definition.value})
+    setTech([..._o.technology])
   }
 
-  
-  
   function BuildList(){
     // const gg = WORDS.set.map( x =>{
     const gg = [];
@@ -99,7 +77,7 @@ function App() {
 
     <div className="App">
     
-    <DataInputs />
+    <DataInputs handleSubmit={(ev) => addArticle(ev) } />
     
     
     
