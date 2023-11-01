@@ -29,7 +29,15 @@ const internals = {};
 
 
 // window.shortDatabase = shortDatabase;
-var key = _o.technology.length-1;
+// var key = _o.technology.length-1;
+// var key = -1;
+
+// for keys and then keep 
+for (var i = 0; i < _o.technology.length; i++) {
+  _o.technology[i].key = i;
+}
+let key = _o.technology[_o.technology.length-1].key;
+
 
 function App() {
   
@@ -44,7 +52,8 @@ function App() {
     key++;
     console.log("sdkjnfd", key, ev.target.title.value, ev.target.definition.value);
     _o.technology.push({key:key,title:ev.target.title.value, definition:ev.target.definition.value})
-    setTech([..._o.technology])
+    // reverse here to debug with on top
+    setTech([..._o.technology].reverse())
   }
 
   function BuildList(){
@@ -110,6 +119,7 @@ function App() {
       
 
         {
+          
           tech.map((x)=>
             <ArticleWord key={x.key} title={x.title} definition={x.definition} />
           )
