@@ -9,7 +9,7 @@ html {
 }
 
 .App {
-  text-align: center;
+  /* text-align: center; */
   padding: 1rem;
 }
 
@@ -46,6 +46,10 @@ html {
   to {
     transform: rotate(360deg);
   }
+}
+
+#opening-text{
+  max-width: 600px;
 }
 
 
@@ -132,7 +136,11 @@ section article p{
 
 .persona-article-nav{
   margin: 4px 0;
-
+}
+.persona-article-nav span{
+  padding: 0 8px 0 0;
+  font-weight: bold;
+  
 }
 .persona-article-nav button{
   margin-right: 4px;

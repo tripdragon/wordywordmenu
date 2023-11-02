@@ -98,7 +98,12 @@ function App() {
 
     <div className="App">
     
-    <h1>Word Menu NEW NEW!! </h1>
+    <div id="opening-text">
+      <h1>Word Menu NEW NEW!! </h1>
+      <p>Writing a paper? Need a word? Dictionary and Thesaurus not really feeling fresh and take a bit too much time to dig through? Behold <strong>WordMenu!!!</strong></p>
+      <p>Inspired by the long out of print <em>Random House Word Menu</em>. This project seeks to revive and upgrade the concept by offering alternative narations giving you a peek into the worlds vinacular.</p>
+      <p>Simply pick or search a category and read though relevant words with short definitions. If available select a <strong>Lens</strong> option to view alternative definitions.</p>
+    </div>
     
     <nav id="alphabet-nav">
       <button className="" link="_t">a</button>
@@ -108,7 +113,9 @@ function App() {
     <div class="groups">
       <section className="category">
       
-      <DataInputs handleSubmit={(ev) => addArticle(ev) } />
+      {/*
+        <DataInputs handleSubmit={(ev) => addArticle(ev) } />
+        */}
       
         <h2>Technology</h2>
         { tech.map( (x) => <ArticleWord key={x.key} title={x.title} definition={x.definition} article={x} /> ) }
@@ -119,6 +126,8 @@ function App() {
         <h2>Board Games</h2>
         { boardgames.map( (x) => <ArticleWord key={x.key} title={x.title} definition={x.definition} article={x} /> ) }
       </section>
+      
+      
     </div>
     
     

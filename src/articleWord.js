@@ -38,6 +38,7 @@ export default function ArticleWord({title, definition, article}){
         <p>{_definition}</p>
 
         <div className="persona-article-nav">
+          <span>Lens:</span>
           <button className="wwbuuuton" onClick={()=>changePersona(basePersona)} >Original</button>
           <button className="wwbuuuton" onClick={()=>changePersona(article.altDefinitions[0].persona)} >{article.altDefinitions[0].persona}</button>
         </div>
