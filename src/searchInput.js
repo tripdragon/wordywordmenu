@@ -22,6 +22,7 @@ export default function SearchInput(){
     document.getElementById("searchbox").dispatchEvent(new CustomEvent("search", { detail: ev.target.value }));
   }
   
+  // throwing an error on enter key
   function handleOnSubmit(ev){
     ev.preventDefault();
     // return false;
@@ -71,7 +72,7 @@ export default function SearchInput(){
       <input
         type="search"
         name="search"
-        placeholder="Search your website"
+        placeholder="Search"
         autoComplete="off"
         required="required"
         className="sbx-medium__input"
