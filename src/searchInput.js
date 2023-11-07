@@ -24,7 +24,10 @@ export default function SearchInput(){
   
   function handleOnSubmit(ev){
     ev.preventDefault();
-    return false;
+    // return false;
+    // debugger
+    // document.getElementById("searchbox").dispatchEvent(new CustomEvent("search", { detail: ev.target.search.value }));
+
   }
   
   function clearButton(ev) {
@@ -32,7 +35,7 @@ export default function SearchInput(){
   }
 
   return(
-  <>
+  <div id="searchbox2" >
   <svg xmlns="http://www.w3.org/2000/svg" style={{ display: "none" }}>
     <symbol
       xmlns="http://www.w3.org/2000/svg"
@@ -103,7 +106,7 @@ export default function SearchInput(){
   </script>
   */}
   
-  </>
+  </div>
   
   );
 }

@@ -65,6 +65,10 @@ function App() {
   _o.currentEnsemble.push({cat:"technology", dats:_o.categories.technology});
   _o.currentEnsemble.push({cat:"boardgames", dats:_o.categories.boardgames});
   
+  // stress test
+  // for (var i = 0; i < 1000; i++) {
+  //   _o.currentEnsemble.push({cat:"boardgames", dats:_o.categories.boardgames});
+  // }
   
   
   var tempSearchArray = [];
@@ -177,7 +181,6 @@ function App() {
 
     <div className="App" id="approot">
     
-    <SearchInput id="searchbox2" />
     
     <div id="opening-text">
       <h1>Word Menu NEW NEW!! </h1>
@@ -190,6 +193,8 @@ function App() {
       <button className="" link="_t">a</button>
       <button className="">b</button>
     </nav>
+    
+    <SearchInput/>
     
     <div className="groups">
       
