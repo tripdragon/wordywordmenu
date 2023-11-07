@@ -26,6 +26,10 @@ export default function SearchInput(){
     ev.preventDefault();
     return false;
   }
+  
+  function clearButton(ev) {
+    document.getElementById("searchbox").dispatchEvent(new CustomEvent("searchclear", { detail: true }));
+  }
 
   return(
   <>
@@ -83,6 +87,7 @@ export default function SearchInput(){
         type="reset"
         title="Clear the search query."
         className="sbx-medium__reset"
+        onClick={clearButton}
       >
         <svg role="img" aria-label="Reset">
           <use xlinkHref="#sbx-icon-clear-2" />

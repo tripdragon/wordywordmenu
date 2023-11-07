@@ -12,6 +12,9 @@ python3 -m http.server 9000
 http://localhost:9000/
 
 
+npm install watch
+"watch": "watch 'npm run build' ./directory-you-want-to-track"
+npm run watch
 
 # Getting Started with Create React App
 

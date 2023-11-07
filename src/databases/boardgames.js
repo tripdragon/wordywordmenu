@@ -1,4 +1,6 @@
 export const boardgames = [
+  { "title": "Artificial Intelligence (AI)", "definition": "The simulation of human intelligence in machines that are programmed to think and learn like humans." },
+
   {
       "title": "Board Game",
       "definition": "A tabletop game played with counters or pieces on a marked board."

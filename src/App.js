@@ -89,15 +89,62 @@ function App() {
   
   
   // BAaaaasic search feature
+  // document.addEventListener( "search", (ev) => {
+  // 
+  //     console.log("eeev", ev.detail);
+  // 
+  //     let query = ev.detail;
+  //     tempSearchArray = _o.currentEnsemble.filter( (x) => {
+  //       return x.cat.toLowerCase().includes(query.toLowerCase())
+  //     })
+  //     setEnsemble(tempSearchArray)
+  // 
+  //   },
+  //   true,
+  // );
+  
+  document.addEventListener( "searchclear", (ev) => {
+      setEnsemble(_o.currentEnsemble)
+    },
+    true,
+  );
+  
   document.addEventListener( "search", (ev) => {
     
       console.log("eeev", ev.detail);
       
+      
+      tempSearchArray = [];
       let query = ev.detail;
-      tempSearchArray = _o.currentEnsemble.filter( (x) => {
-        return x.cat.toLowerCase().includes(query.toLowerCase())
-      })
-      setEnsemble(tempSearchArray)
+      
+      _o.currentEnsemble.forEach((item, i) => {
+        // console.log(item);
+        var base = {cat:null, dats: [] }; // change this to a class
+        var secondary = [];
+        
+        if (item.cat.toLowerCase().includes(query.toLowerCase()) ) {
+          base = item;
+        }
+        else {
+          secondary = item.dats.filter( (x) => {
+            return x.title.toLowerCase().includes(query.toLowerCase())
+          })
+        }
+        
+        if(base.cat === null && secondary.length > 0){
+          base.cat = item.cat;
+          base.dats = secondary;
+        }
+        
+        if(base.cat !== null){
+          tempSearchArray.push(base)
+        }
+        
+      });
+      
+      setEnsemble(tempSearchArray);
+      
+      
       
     },
     true,
@@ -143,7 +190,7 @@ function App() {
     </nav>
     
     <div className="groups">
-      <section className="category">
+      
       
       {/*
         <DataInputs handleSubmit={(ev) => addArticle(ev) } />
@@ -157,31 +204,23 @@ function App() {
         
         
         */}
-        
-        
-        <h2>????¿¿¿¿</h2>
-        { 
-          // _o.currentEnsemble.forEach((item, i) => {
-          // });
-          // for (var i = 0; i < [].length; i++) {
-          //   []
-          // }
-          // <h2>Board Games</h2>
 
+        { 
+          
           ensemble.map( (x) => 
-            <>
+            <section className="category">
               <h2 key={x.cat}>{x.cat}</h2>
               {x.dats.map( (yy) =>
                 <ArticleWord key={yy.key} title={yy.title} definition={yy.definition} article={x.cat} />
               )}
               <hr />
-            </>
+            </section>
           )
           
         }
         
 
-      </section>
+      
       
       {/*
         
