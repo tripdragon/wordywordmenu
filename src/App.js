@@ -88,7 +88,7 @@ function App() {
   }
   
   
-  // Listen for the event.
+  // BAaaaasic search feature
   document.addEventListener( "search", (ev) => {
     
       console.log("eeev", ev.detail);
