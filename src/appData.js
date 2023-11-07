@@ -3,6 +3,7 @@
 
 import {technology} from './databases/technology.js';
 import {boardgames} from './databases/boardgames.js';
+import {cooking} from './databases/cooking.js';
 
 export const _o = {
   // technology : [
@@ -21,3 +22,4 @@ export const _o = {
 // _o.boardgames = boardgames;
 _o.categories.technology = technology;
 _o.categories.boardgames = boardgames;
+_o.categories.cooking = cooking;

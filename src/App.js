@@ -46,6 +46,12 @@ let key_tech = _o.categories.technology[_o.categories.technology.length-1].key;
 buildKeys(_o.categories.boardgames);
 let key_boardgames = _o.categories.boardgames[_o.categories.boardgames.length-1].key;
 
+buildKeys(_o.categories.cooking);
+let key_cooking = _o.categories.cooking[_o.categories.cooking.length-1].key;
+
+// Object.keys(_o.categories).forEach(key => {
+// 
+// });
 
 
 // for keys and then keep 
@@ -64,6 +70,7 @@ function App() {
   _o.currentEnsemble = [];
   _o.currentEnsemble.push({cat:"technology", dats:_o.categories.technology});
   _o.currentEnsemble.push({cat:"boardgames", dats:_o.categories.boardgames});
+  _o.currentEnsemble.push({cat:"cooking", dats:_o.categories.cooking});
   
   // stress test
   // for (var i = 0; i < 1000; i++) {
@@ -189,11 +196,14 @@ function App() {
       <p>Simply pick or search a category and read though relevant words with short definitions. If available select a <strong>Lens</strong> option to view alternative definitions.</p>
     </div>
     
-    <nav id="alphabet-nav">
+    {/*
+      
+      <nav id="alphabet-nav">
       <button className="" link="_t">a</button>
       <button className="">b</button>
-    </nav>
-    
+      </nav>
+      
+      */}
     <SearchInput/>
     
     <div className="groups">
