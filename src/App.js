@@ -65,6 +65,8 @@ function App() {
   _o.currentEnsemble.push({cat:"technology", dats:_o.categories.technology});
   _o.currentEnsemble.push({cat:"boardgames", dats:_o.categories.boardgames});
   
+  
+  
   var tempSearchArray = [];
   
   
@@ -206,14 +208,13 @@ function App() {
         */}
 
         { 
-          
+          // debugger
           ensemble.map( (x) => 
             <section className="category">
               <h2 key={x.cat}>{x.cat}</h2>
               {x.dats.map( (yy) =>
-                <ArticleWord key={yy.key} title={yy.title} definition={yy.definition} article={x.cat} />
+                <ArticleWord key={yy.key} title={yy.title} definition={yy.definition} article={yy} />
               )}
-              <hr />
             </section>
           )
           

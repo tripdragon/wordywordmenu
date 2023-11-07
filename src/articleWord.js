@@ -7,6 +7,9 @@ import DefinitionCard from './definitionCard.js';
 
 export default function ArticleWord({title, definition, article}){
   
+  // if (title === "computer") {
+  //   debugger
+  // }
 
   const basePersona = "original";
   const [persona,setPersona] = useState(basePersona);
