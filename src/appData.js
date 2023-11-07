@@ -12,7 +12,12 @@ export const _o = {
   // ]
   // "tech jargon" : [
   
+  currentEnsemble : [],
+  
+  categories : {}
 }
-
-_o.technology = technology;
-_o.boardgames = boardgames;
+// 
+// _o.technology = technology;
+// _o.boardgames = boardgames;
+_o.categories.technology = technology;
+_o.categories.boardgames = boardgames;

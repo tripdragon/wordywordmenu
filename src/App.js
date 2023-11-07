@@ -2,12 +2,13 @@ import './fish.css';
 import logo from './logo.svg';
 import { useState } from 'react';
 
-import './App.css';
+import './App.scss';
 
 import { WORDS } from './wordmenu.js';
 
 import { shortDatabase } from './shortDatabase.js';
 import ArticleWord from './articleWord.js';
+import SearchInput from './searchInput.js';
 
 
 
@@ -38,12 +39,12 @@ function buildKeys(data){
     data[i].key = i;
   }
 }
-buildKeys(_o.technology);
-let key_tech = _o.technology[_o.technology.length-1].key;
+buildKeys(_o.categories.technology);
+let key_tech = _o.categories.technology[_o.categories.technology.length-1].key;
 
 
-buildKeys(_o.boardgames);
-let key_boardgames = _o.boardgames[_o.boardgames.length-1].key;
+buildKeys(_o.categories.boardgames);
+let key_boardgames = _o.categories.boardgames[_o.categories.boardgames.length-1].key;
 
 
 
@@ -60,13 +61,25 @@ function App() {
   // early figuring out what the schema is like
   // as .map is not avaialble in an object
   
-  const [tech, setTech] = useState(_o.technology);
+  _o.currentEnsemble = [];
+  _o.currentEnsemble.push({cat:"technology", dats:_o.categories.technology});
+  _o.currentEnsemble.push({cat:"boardgames", dats:_o.categories.boardgames});
   
-  const [boardgames, setBoardgames] = useState(_o.boardgames);
+  var tempSearchArray = [];
+  
+  
+  const [tech, setTech] = useState(_o.categories.technology);
+  
+  const [boardgames, setBoardgames] = useState(_o.categories.boardgames);
+  
+  const [ensemble, setEnsemble] = useState(_o.currentEnsemble);
+  
+  
+  
   
   function addArticle(ev){
     ev.preventDefault();
-    // debugger
+    
     key_tech++;
     console.log("sdkjnfd", key_tech, ev.target.title.value, ev.target.definition.value);
     _o.technology.push({key:key_tech,title:ev.target.title.value, definition:ev.target.definition.value})
@@ -74,6 +87,23 @@ function App() {
     setTech([..._o.technology].reverse())
   }
   
+  
+  // Listen for the event.
+  document.addEventListener( "search", (ev) => {
+    
+      console.log("eeev", ev.detail);
+      
+      let query = ev.detail;
+      tempSearchArray = _o.currentEnsemble.filter( (x) => {
+        return x.cat.toLowerCase().includes(query.toLowerCase())
+      })
+      setEnsemble(tempSearchArray)
+      
+    },
+    true,
+  );
+  
+
   
   // 
   // function BuildList(){
@@ -96,7 +126,9 @@ function App() {
   return (
     <>
 
-    <div className="App">
+    <div className="App" id="approot">
+    
+    <SearchInput id="searchbox2" />
     
     <div id="opening-text">
       <h1>Word Menu NEW NEW!! </h1>
@@ -110,23 +142,55 @@ function App() {
       <button className="">b</button>
     </nav>
     
-    <div class="groups">
+    <div className="groups">
       <section className="category">
       
       {/*
         <DataInputs handleSubmit={(ev) => addArticle(ev) } />
-        */}
-      
+        
         <h2>Technology</h2>
         { tech.map( (x) => <ArticleWord key={x.key} title={x.title} definition={x.definition} article={x} /> ) }
-      </section>
-      
-      
-      <section className="category" id="_t">
+        
+        
         <h2>Board Games</h2>
         { boardgames.map( (x) => <ArticleWord key={x.key} title={x.title} definition={x.definition} article={x} /> ) }
+        
+        
+        */}
+        
+        
+        <h2>????¿¿¿¿</h2>
+        { 
+          // _o.currentEnsemble.forEach((item, i) => {
+          // });
+          // for (var i = 0; i < [].length; i++) {
+          //   []
+          // }
+          // <h2>Board Games</h2>
+
+          ensemble.map( (x) => 
+            <>
+              <h2 key={x.cat}>{x.cat}</h2>
+              {x.dats.map( (yy) =>
+                <ArticleWord key={yy.key} title={yy.title} definition={yy.definition} article={x.cat} />
+              )}
+              <hr />
+            </>
+          )
+          
+        }
+        
+
       </section>
       
+      {/*
+        
+        <section className="category" id="_t">
+        <h2>Board Games</h2>
+        { boardgames.map( (x) => <ArticleWord key={x.key} title={x.title} definition={x.definition} article={x} /> ) }
+        </section>
+        
+        */}
       
     </div>
     

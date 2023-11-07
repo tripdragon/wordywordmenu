@@ -120,14 +120,17 @@ section{
 }
 section article{
   margin-bottom: 1.2rem;
+  
+  h3{
+    display: inline;
+    padding-right: 4px;
+  }
+  p{
+    display: inline;
+  }  
 }
-section article h3{
-  display: inline;
-  padding-right: 4px;
-}
-section article p{
-  display: inline;
-}
+
+
 
 .data-form{
   text-align: left;
@@ -136,12 +139,12 @@ section article p{
 
 .persona-article-nav{
   margin: 4px 0;
-}
-.persona-article-nav span{
-  padding: 0 8px 0 0;
-  font-weight: bold;
   
-}
-.persona-article-nav button{
-  margin-right: 4px;
+  span{
+    padding: 0 8px 0 0;
+    font-weight: bold;  
+  }
+  button{
+    margin-right: 4px;
+  }
 }
