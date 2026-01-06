@@ -32,7 +32,10 @@ window._o = _o;
 
 // window.shortDatabase = shortDatabase;
 
-
+// #98484kJidf-1
+// THIS can be better automated
+// are they used????!!!
+// looks like it was just for CMS input
 function buildKeys(data){
   // for keys and then keep 
   for (var i = 0; i < data.length; i++) {
@@ -48,6 +51,11 @@ let key_boardgames = _o.categories.boardgames[_o.categories.boardgames.length-1]
 
 buildKeys(_o.categories.cooking);
 let key_cooking = _o.categories.cooking[_o.categories.cooking.length-1].key;
+
+buildKeys(_o.categories.arts);
+let key_arts = _o.categories.arts[_o.categories.arts.length-1].key;
+
+
 
 // Object.keys(_o.categories).forEach(key => {
 // 
@@ -67,10 +75,25 @@ function App() {
   // early figuring out what the schema is like
   // as .map is not avaialble in an object
   
+  // #98484kJidf-2
   _o.currentEnsemble = [];
   _o.currentEnsemble.push({cat:"technology", dats:_o.categories.technology});
   _o.currentEnsemble.push({cat:"boardgames", dats:_o.categories.boardgames});
   _o.currentEnsemble.push({cat:"cooking", dats:_o.categories.cooking});
+  
+  // UGh repeat
+  _o.currentEnsemble.push({cat:"arts", dats:_o.categories.arts});
+  _o.currentEnsemble.push({cat:"history", dats:_o.categories.history});
+  _o.currentEnsemble.push({cat:"philosophy", dats:_o.categories.philosophy});
+  _o.currentEnsemble.push({cat:"environment", dats:_o.categories.environment});
+  _o.currentEnsemble.push({cat:"culture", dats:_o.categories.culture});
+  _o.currentEnsemble.push({cat:"finance", dats:_o.categories.finance});
+  _o.currentEnsemble.push({cat:"education", dats:_o.categories.education});
+  _o.currentEnsemble.push({cat:"psychology", dats:_o.categories.psychology});
+  _o.currentEnsemble.push({cat:"health", dats:_o.categories.health});
+  _o.currentEnsemble.push({cat:"design", dats:_o.categories.design});
+  _o.currentEnsemble.push({cat:"business", dats:_o.categories.business});
+  _o.currentEnsemble.push({cat:"science", dats:_o.categories.science});
   
   // stress test
   // for (var i = 0; i < 1000; i++) {

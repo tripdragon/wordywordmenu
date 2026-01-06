@@ -16,7 +16,16 @@ npm install watch
 "watch": "watch 'npm run build' ./directory-you-want-to-track"
 npm run watch
 
+npm install
+
 npm run start
 
+http://localhost:3000/
+
 npm run build
+
+------
+
+appData.js holds the database imports
+
 
