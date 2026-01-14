@@ -2,6 +2,20 @@
 -- Assumes tables:
 --   categories(id INTEGER PRIMARY KEY, name TEXT, description TEXT)
 --   related_words(id INTEGER PRIMARY KEY, category_id INTEGER, category TEXT, word TEXT, description TEXT)
+CREATE TABLE categories (
+  id INTEGER PRIMARY KEY,
+  name TEXT,
+  description TEXT
+);
+
+CREATE TABLE related_words (
+  id INTEGER PRIMARY KEY,
+  category_id INTEGER,
+  category TEXT,
+  word TEXT,
+  description TEXT
+);
+
 
 INSERT INTO categories (id, name, description) VALUES
 (1, 'Cooking', 'Preparing food with heat, tools, and technique.'),
