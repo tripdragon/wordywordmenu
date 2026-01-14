@@ -9,6 +9,7 @@ import { WORDS } from './wordmenu.js';
 import { shortDatabase } from './shortDatabase.js';
 import ArticleWord from './articleWord.js';
 import SearchInput from './searchInput.js';
+import HeaderNav from './headerNav.js';
 
 
 
@@ -211,6 +212,7 @@ function App() {
 
     <div className="App" id="approot">
     
+    <HeaderNav />
     
     <div id="opening-text">
       <h1>Word Menu NEW NEW!! </h1>

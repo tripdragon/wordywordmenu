@@ -1,0 +1,136 @@
+//   :root {
+//     --ink: #0b1320;
+//     --paper: #f7f1e6;
+//     --sand: #efe2cf;
+//     --fog: #e4d7c2;
+//     --cherry: #c2432f;
+//     --moss: #2b4c3f;
+//     --ocean: #2e5b7f;
+//     --charcoal: #2a2a2a;
+//     --shadow: rgba(17, 12, 8, 0.12);
+//     --headline: "Playfair Display", "Times New Roman", serif;
+//     --body: "Source Sans Pro", "Segoe UI", sans-serif;
+//   }
+
+header {
+    // padding: 28px 6vw 18px;
+    position: sticky;
+    top: 0;
+    // background: linear-gradient(180deg, rgba(247, 241, 230, 0.98), rgba(247, 241, 230, 0.78));
+    // backdrop-filter: blur(28px);
+    border-bottom: 1px solid rgba(20, 10, 8, 0.08);
+    z-index: 10;
+
+
+    .brand-row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: normal;
+        align-items: normal;
+        align-content: normal;
+
+    }
+
+    .logo {
+        display: block;
+        flex-grow: 0;
+        flex-shrink: 1;
+        flex-basis: auto;
+        align-self: auto;
+        order: 0;
+    }
+
+    .header-meta {
+        display: flex;
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: auto;
+        align-self: auto;
+        order: 0;
+        justify-content: flex-end;
+
+        span{
+            padding-left: 1em;
+        }
+    }
+
+
+
+    // .brand-row {
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: space-between;
+    //     gap: 16px;
+    //     flex-wrap: wrap;
+    // }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .logo-mark {
+        // width: 44px;
+        // height: 44px;
+        // border-radius: 12px 12px 18px 6px;
+        // background: linear-gradient(145deg, var(--moss), var(--ocean));
+        display: grid;
+        place-items: center;
+        // color: #fff;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    .logo-text {
+        font-family: var(--headline);
+        // font-size: 1.8rem;
+        font-weight: 400;
+        font-style: italic;
+    }
+
+    .logo-text span {
+        color: var(--cherry);
+    }
+
+    a.header-meta {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+        // font-size: 0.95rem;
+        
+    }
+
+}
+
+@media (max-width: 980px) {
+    header{
+        a.grid {
+            grid-template-columns: repeat(6, 1fr);
+        }
+    }
+
+}
+
+@media (max-width: 720px) {
+    header {
+        padding: 20px 6vw 14px;
+
+        .logo-text {
+            // font-size: 1.4rem;
+        }
+
+        a.header-meta {
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        a.section-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+    }
+}
