@@ -4,12 +4,12 @@ export default function HeaderNav(props) {
     return (
         <>
             <header>
-                <div class="brand-row">
-                    <div class="logo">
-                        <div class="logo-mark">Wordable Menu</div>
-                        <div class="logo-text">Its fancy!!</div>
+                <div className="brand-row">
+                    <div className="logo">
+                        <div className="logo-mark">Wordable Menu</div>
+                        <div className="logo-text">Its fancy!!</div>
                     </div>
-                    <div class="header-meta">
+                    <div className="header-meta">
                         
                             <span>about</span>
                             <span>tacos</span>

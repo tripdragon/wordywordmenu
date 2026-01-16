@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import ArticleWord from './articleWord.js';
+import SearchInput2 from './SearchInput2.js';
 
 
 const sql_file = "seed_categories.sql";
@@ -9,6 +10,7 @@ const sql_file = "seed_categories.sql";
 export default function Builder2() {
   const [sqlText, setSqlText] = useState('');
   const [error, setError] = useState('');
+  const [query, setQuery] = useState('');
 
   const parsed = useMemo(() => {
     if (!sqlText) {
@@ -70,6 +72,30 @@ export default function Builder2() {
     return grouped;
   }, [parsed.relatedWords]);
 
+  const filteredCategories = useMemo(() => {
+    const trimmed = query.trim().toLowerCase();
+    if (!trimmed) {
+      return parsed.categories.map((category) => ({
+        ...category,
+        words: relatedByCategoryId.get(category.id) || [],
+      }));
+    }
+
+    return parsed.categories.reduce((acc, category) => {
+      const categoryMatch = category.name.toLowerCase().includes(trimmed);
+      const words = relatedByCategoryId.get(category.id) || [];
+      const matchedWords = categoryMatch
+        ? words
+        : words.filter((entry) => entry.word.toLowerCase().includes(trimmed));
+
+      if (categoryMatch || matchedWords.length > 0) {
+        acc.push({ ...category, words: matchedWords });
+      }
+
+      return acc;
+    }, []);
+  }, [parsed.categories, query, relatedByCategoryId]);
+
   useEffect(() => {
     let isMounted = true;
     const sqlUrl = `${process.env.PUBLIC_URL}/${sql_file}`;
@@ -105,33 +131,41 @@ export default function Builder2() {
       ) : !sqlText ? (
         <p>Loading...</p>
       ) : (
-        <div className="groups">
-          {parsed.categories.map((category) => {
-            const related = relatedByCategoryId.get(category.id) || [];
-            return (
-              <section key={category.id} className="category">
-                <h2>{category.name}</h2>
-                {/* <p>{category.description}</p> */}
-                {related.length ? (
-                  <>
-                    {related.map((yy) => (
-                      <div>
-                        
-                      <ArticleWord key={yy.id} title={yy.word} definition={yy.description} article={yy} />
-                      </div>
-                      
-                      // <li key={entry.id}>
-                      //   <strong>{entry.word}</strong>: {entry.description}
-                      // </li>
-                    ))}
-                  </>
-                ) : (
-                  <p>No related words found.</p>
-                )}
-              </section>
-            );
-          })}
-        </div>
+        <>
+          <SearchInput2
+            value={query}
+            onChange={setQuery}
+            onClear={() => setQuery('')}
+          />
+
+          <div className="groups">
+            {filteredCategories.length === 0 ? (
+              <p>No results.</p>
+            ) : (
+              filteredCategories.map((category) => (
+                <section key={category.id} className="category">
+                  <h2>{category.name}</h2>
+                  <p>{category.description}</p>
+                  {category.words.length ? (
+                    <>
+                      {category.words.map((yy) => (
+                        <div key={yy.id}>
+                          <ArticleWord
+                            title={yy.word}
+                            definition={yy.description}
+                            article={yy}
+                          />
+                        </div>
+                      ))}
+                    </>
+                  ) : (
+                    <p>No related words found.</p>
+                  )}
+                </section>
+              ))
+            )}
+          </div>
+        </>
       )}
     </div>
   );
