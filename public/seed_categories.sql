@@ -1,7 +1,7 @@
 -- Categories and related words with short descriptors.
 -- Assumes tables:
 --   categories(id INTEGER PRIMARY KEY, name TEXT, description TEXT)
---   related_words(id INTEGER PRIMARY KEY, category_id INTEGER, category TEXT, word TEXT, description TEXT)
+--   related_words(id INTEGER PRIMARY KEY, category_id INTEGER, category TEXT, word TEXT, description TEXT, alternative_definition TEXT)
 CREATE TABLE categories (
   id INTEGER PRIMARY KEY,
   name TEXT,
@@ -13,7 +13,8 @@ CREATE TABLE related_words (
   category_id INTEGER,
   category TEXT,
   word TEXT,
-  description TEXT
+  description TEXT,
+  alternative_definition TEXT
 );
 
 
@@ -39,50 +40,50 @@ INSERT INTO categories (id, name, description) VALUES
 (19, 'Movies', 'Visual stories told with actors, sound, and edits.'),
 (20, 'Design', 'Planning form and function for clear user use.');
 
-INSERT INTO related_words (id, category_id, category, word, description) VALUES
-(1, 1, 'Cooking', 'simmer', 'Gentle heat that builds flavor without boiling.'),
-(2, 1, 'Cooking', 'saute', 'Quick pan cooking that browns and lifts aroma.'),
-(3, 1, 'Cooking', 'marinate', 'Soaking food to infuse herbs, acid, and spice.'),
-(4, 1, 'Cooking', 'whisk', 'Rapid mixing to blend air and smooth texture.'),
-(5, 1, 'Cooking', 'broil', 'High top heat that crisps surfaces fast.'),
-(6, 1, 'Cooking', 'knead', 'Working dough to develop gluten and structure.'),
-(7, 1, 'Cooking', 'reduce', 'Slowly thickening liquids to intensify taste.'),
-(8, 1, 'Cooking', 'sear', 'Hot contact that seals surface and adds depth.'),
-(9, 1, 'Cooking', 'zest', 'Citrus peel that brightens dishes with oils.'),
-(10, 1, 'Cooking', 'blanch', 'Brief boil then chill to set color and bite.'),
+INSERT INTO related_words (id, category_id, category, word, description, alternative_definition) VALUES
+(1, 1, 'Cooking', 'simmer', 'Gentle heat that builds flavor without boiling.', 'Low, lazy heat that coaxes flavors to mingle.'),
+(2, 1, 'Cooking', 'saute', 'Quick pan cooking that browns and lifts aroma.', NULL),
+(3, 1, 'Cooking', 'marinate', 'Soaking food to infuse herbs, acid, and spice.', 'A flavor bath that seasons before the heat.'),
+(4, 1, 'Cooking', 'whisk', 'Rapid mixing to blend air and smooth texture.', 'Beat fast to trap air and smooth the mix.'),
+(5, 1, 'Cooking', 'broil', 'High top heat that crisps surfaces fast.', NULL),
+(6, 1, 'Cooking', 'knead', 'Working dough to develop gluten and structure.', NULL),
+(7, 1, 'Cooking', 'reduce', 'Slowly thickening liquids to intensify taste.', NULL),
+(8, 1, 'Cooking', 'sear', 'Hot contact that seals surface and adds depth.', 'Quick blast of heat that builds a crust.'),
+(9, 1, 'Cooking', 'zest', 'Citrus peel that brightens dishes with oils.', NULL),
+(10, 1, 'Cooking', 'blanch', 'Brief boil then chill to set color and bite.', NULL),
 
-(11, 2, 'Travel', 'itinerary', 'Planned route that organizes time and stops.'),
-(12, 2, 'Travel', 'passport', 'Official ID needed for border entry and travel.'),
-(13, 2, 'Travel', 'layover', 'Short stop between flights while in transit.'),
-(14, 2, 'Travel', 'backpack', 'Portable storage for essentials on the move.'),
-(15, 2, 'Travel', 'hostel', 'Budget lodging that favors shared spaces.'),
-(16, 2, 'Travel', 'souvenir', 'Memento that ties a trip to a memory.'),
-(17, 2, 'Travel', 'jetlag', 'Body clock shift after crossing time zones.'),
-(18, 2, 'Travel', 'visa', 'Permission document for entry or extended stay.'),
-(19, 2, 'Travel', 'guidebook', 'Reference that highlights culture, maps, and tips.'),
-(20, 2, 'Travel', 'excursion', 'Short trip that adds a focused experience.'),
+(11, 2, 'Travel', 'itinerary', 'Planned route that organizes time and stops.', NULL),
+(12, 2, 'Travel', 'passport', 'Official ID needed for border entry and travel.', NULL),
+(13, 2, 'Travel', 'layover', 'Short stop between flights while in transit.', NULL),
+(14, 2, 'Travel', 'backpack', 'Portable storage for essentials on the move.', NULL),
+(15, 2, 'Travel', 'hostel', 'Budget lodging that favors shared spaces.', NULL),
+(16, 2, 'Travel', 'souvenir', 'Memento that ties a trip to a memory.', NULL),
+(17, 2, 'Travel', 'jetlag', 'Body clock shift after crossing time zones.', NULL),
+(18, 2, 'Travel', 'visa', 'Permission document for entry or extended stay.', NULL),
+(19, 2, 'Travel', 'guidebook', 'Reference that highlights culture, maps, and tips.', NULL),
+(20, 2, 'Travel', 'excursion', 'Short trip that adds a focused experience.', NULL),
 
-(21, 3, 'Technology', 'algorithm', 'Step-by-step logic that solves a defined task.'),
-(22, 3, 'Technology', 'database', 'Structured storage for reliable data retrieval.'),
-(23, 3, 'Technology', 'cloud', 'Remote computing resources delivered over network.'),
-(24, 3, 'Technology', 'sensor', 'Device that detects change and reports signals.'),
-(25, 3, 'Technology', 'encryption', 'Method that protects data through coded access.'),
-(26, 3, 'Technology', 'bandwidth', 'Capacity that limits speed for data transfer.'),
-(27, 3, 'Technology', 'interface', 'Connection layer between user and system actions.'),
-(28, 3, 'Technology', 'firmware', 'Embedded software that controls device hardware.'),
-(29, 3, 'Technology', 'automation', 'Processes that run with minimal human input.'),
-(30, 3, 'Technology', 'latency', 'Delay between request and system response.'),
+(21, 3, 'Technology', 'algorithm', 'Step-by-step logic that solves a defined task.', NULL),
+(22, 3, 'Technology', 'database', 'Structured storage for reliable data retrieval.', NULL),
+(23, 3, 'Technology', 'cloud', 'Remote computing resources delivered over network.', NULL),
+(24, 3, 'Technology', 'sensor', 'Device that detects change and reports signals.', NULL),
+(25, 3, 'Technology', 'encryption', 'Method that protects data through coded access.', NULL),
+(26, 3, 'Technology', 'bandwidth', 'Capacity that limits speed for data transfer.', NULL),
+(27, 3, 'Technology', 'interface', 'Connection layer between user and system actions.', NULL),
+(28, 3, 'Technology', 'firmware', 'Embedded software that controls device hardware.', NULL),
+(29, 3, 'Technology', 'automation', 'Processes that run with minimal human input.', NULL),
+(30, 3, 'Technology', 'latency', 'Delay between request and system response.', NULL),
 
-(31, 4, 'Nature', 'forest', 'Dense trees that shelter biodiversity and soil.'),
-(32, 4, 'Nature', 'river', 'Flowing water that shapes land and habitat.'),
-(33, 4, 'Nature', 'pollination', 'Transfer of pollen that enables plant reproduction.'),
-(34, 4, 'Nature', 'climate', 'Long-term patterns of weather in a region.'),
-(35, 4, 'Nature', 'habitat', 'Natural home that supports a species lifecycle.'),
-(36, 4, 'Nature', 'wetland', 'Water-rich area that filters and buffers floods.'),
-(37, 4, 'Nature', 'canopy', 'Upper layer of trees that controls light and rain.'),
-(38, 4, 'Nature', 'erosion', 'Gradual wearing of land by wind or water.'),
-(39, 4, 'Nature', 'biodiversity', 'Variety of life that strengthens ecosystems.'),
-(40, 4, 'Nature', 'tundra', 'Cold plain with short growing seasons.'),
+(31, 4, 'Nature', 'forest', 'Dense trees that shelter biodiversity and soil.', NULL),
+(32, 4, 'Nature', 'river', 'Flowing water that shapes land and habitat.', NULL),
+(33, 4, 'Nature', 'pollination', 'Transfer of pollen that enables plant reproduction.', NULL),
+(34, 4, 'Nature', 'climate', 'Long-term patterns of weather in a region.', NULL),
+(35, 4, 'Nature', 'habitat', 'Natural home that supports a species lifecycle.', NULL),
+(36, 4, 'Nature', 'wetland', 'Water-rich area that filters and buffers floods.', NULL),
+(37, 4, 'Nature', 'canopy', 'Upper layer of trees that controls light and rain.', NULL),
+(38, 4, 'Nature', 'erosion', 'Gradual wearing of land by wind or water.', NULL),
+(39, 4, 'Nature', 'biodiversity', 'Variety of life that strengthens ecosystems.', NULL),
+(40, 4, 'Nature', 'tundra', 'Cold plain with short growing seasons.', NULL),
 
 (41, 5, 'Music', 'melody', 'Singable line that carries the main theme; it guides emotion.'),
 (42, 5, 'Music', 'rhythm', 'Pulse and pattern that drive timing and movement.'),

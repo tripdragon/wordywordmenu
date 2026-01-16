@@ -12,6 +12,93 @@ export default function Builder2() {
   const [error, setError] = useState('');
   const [query, setQuery] = useState('');
 
+  const extractInsertValues = (sql, tableName) => {
+    const insertRegex = new RegExp(
+      `INSERT INTO\\s+${tableName}\\s*\\([^)]*\\)\\s*VALUES\\s*`,
+      'i'
+    );
+    const match = insertRegex.exec(sql);
+    if (!match) {
+      return null;
+    }
+
+    let inString = false;
+    const startIndex = match.index + match[0].length;
+
+    for (let i = startIndex; i < sql.length; i += 1) {
+      const char = sql[i];
+      const nextChar = sql[i + 1];
+
+      if (char === "'" && inString && nextChar === "'") {
+        i += 1;
+        continue;
+      }
+
+      if (char === "'") {
+        inString = !inString;
+        continue;
+      }
+
+      if (!inString && char === ';') {
+        return sql.slice(startIndex, i).trim();
+      }
+    }
+
+    return null;
+  };
+
+  const extractTuples = (valuesText) => {
+    const tuples = [];
+    let current = '';
+    let depth = 0;
+    let inString = false;
+
+    for (let i = 0; i < valuesText.length; i += 1) {
+      const char = valuesText[i];
+      const nextChar = valuesText[i + 1];
+
+      if (char === "'" && inString && nextChar === "'") {
+        current += "''";
+        i += 1;
+        continue;
+      }
+
+      if (char === "'") {
+        inString = !inString;
+        if (depth > 0) {
+          current += char;
+        }
+        continue;
+      }
+
+      if (!inString && char === '(') {
+        if (depth === 0) {
+          current = '';
+        } else {
+          current += char;
+        }
+        depth += 1;
+        continue;
+      }
+
+      if (!inString && char === ')' && depth > 0) {
+        depth -= 1;
+        if (depth === 0) {
+          tuples.push(current);
+        } else {
+          current += char;
+        }
+        continue;
+      }
+
+      if (depth > 0) {
+        current += char;
+      }
+    }
+
+    return tuples;
+  };
+
   const parsed = useMemo(() => {
     if (!sqlText) {
       return { categories: [], relatedWords: [] };
@@ -20,13 +107,11 @@ export default function Builder2() {
     const categories = [];
     const relatedWords = [];
 
-    const categoriesInsert = sqlText.match(
-      /INSERT INTO categories\s*\([^\)]*\)\s*VALUES\s*([\s\S]*?);/i
-    );
+    const categoriesInsert = extractInsertValues(sqlText, 'categories');
     if (categoriesInsert) {
-      const tuples = [...categoriesInsert[1].matchAll(/\(([^)]+)\)/g)];
+      const tuples = extractTuples(categoriesInsert);
       tuples.forEach((tuple) => {
-        const parts = tuple[1]
+        const parts = tuple
           .split(/,(?=(?:[^']*'[^']*')*[^']*$)/)
           .map((part) => part.trim());
         if (parts.length >= 3) {
@@ -38,13 +123,11 @@ export default function Builder2() {
       });
     }
 
-    const relatedInsert = sqlText.match(
-      /INSERT INTO related_words\s*\([^\)]*\)\s*VALUES\s*([\s\S]*?);/i
-    );
+    const relatedInsert = extractInsertValues(sqlText, 'related_words');
     if (relatedInsert) {
-      const tuples = [...relatedInsert[1].matchAll(/\(([^)]+)\)/g)];
+      const tuples = extractTuples(relatedInsert);
       tuples.forEach((tuple) => {
-        const parts = tuple[1]
+        const parts = tuple
           .split(/,(?=(?:[^']*'[^']*')*[^']*$)/)
           .map((part) => part.trim());
         if (parts.length >= 5) {
@@ -53,7 +136,23 @@ export default function Builder2() {
           const category = parts[2].replace(/^'|'$/g, '').replace(/''/g, "'");
           const word = parts[3].replace(/^'|'$/g, '').replace(/''/g, "'");
           const description = parts[4].replace(/^'|'$/g, '').replace(/''/g, "'");
-          relatedWords.push({ id, categoryId, category, word, description });
+          const rawAltDefinition = parts[5] ? parts[5].trim() : '';
+          const alternativeDefinition =
+            rawAltDefinition && rawAltDefinition.toUpperCase() !== 'NULL'
+              ? rawAltDefinition.replace(/^'|'$/g, '').replace(/''/g, "'")
+              : '';
+          const altDefinitions = alternativeDefinition
+            ? [{ persona: 'Alternative', definition: alternativeDefinition }]
+            : [];
+          relatedWords.push({
+            id,
+            categoryId,
+            category,
+            word,
+            description,
+            alternativeDefinition,
+            altDefinitions,
+          });
         }
       });
     }
@@ -154,6 +253,7 @@ export default function Builder2() {
                             title={yy.word}
                             definition={yy.description}
                             article={yy}
+                            useToggle
                           />
                         </div>
                       ))}
