@@ -1,4 +1,4 @@
-import './searchInput.scss';
+import './styles/searchInput.scss';
 
 export default function SearchInput2({ value, onChange, onClear }) {
   function handleOnChange(ev) {

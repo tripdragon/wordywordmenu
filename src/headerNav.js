@@ -1,4 +1,4 @@
-import './headerNav.scss';
+import './styles/headerNav.scss';
 
 export default function HeaderNav(props) {
     return (

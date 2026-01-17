@@ -22,6 +22,8 @@ npm run start
 
 http://localhost:3000/
 
+npm run build:data2
+
 npm run build
 
 ------

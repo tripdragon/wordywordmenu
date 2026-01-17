@@ -1,3 +1,5 @@
+
+import './styles/Groups.scss';
 import { useEffect, useMemo, useState } from 'react';
 import ArticleWord from './articleWord.js';
 import SearchInput2 from './SearchInput2.js';
@@ -235,7 +237,7 @@ export default function Builder2() {
 
   return (
     <div className="Builder2">
-      <h1>Builder2: SQL Loader</h1>
+      {/* <h1>Builder2: SQL Loader</h1> */}
       {error ? (
         <p>{error}</p>
       ) : !sqlText ? (
@@ -254,8 +256,8 @@ export default function Builder2() {
             ) : (
               filteredCategories.map((category) => (
                 <section key={category.id} className="category">
-                  <h2>{category.name}</h2>
-                  <p>{category.description}</p>
+                  <h2 className='categoryName'>{category.name}</h2>
+                  <p className='definition'>{category.description}</p>
                   {category.words.length ? (
                     <>
                       {category.words.map((yy) => (

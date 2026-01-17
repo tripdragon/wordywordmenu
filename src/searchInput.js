@@ -1,5 +1,5 @@
 
-import './searchInput.scss';
+import './styles/searchInput.scss';
 
 import {useEffect} from "react";
 
