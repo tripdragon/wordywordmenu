@@ -17,6 +17,9 @@
   },
   "watch": "watch 'npm run build' ./",
   "scripts": {
+    "build:data2": "node scripts/build_central_data_2.js",
+    "prestart": "node scripts/build_central_data_2.js",
+    "prebuild": "node scripts/build_central_data_2.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

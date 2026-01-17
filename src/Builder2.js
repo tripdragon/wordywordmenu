@@ -3,7 +3,7 @@ import ArticleWord from './articleWord.js';
 import SearchInput2 from './SearchInput2.js';
 
 
-const sql_file = "seed_categories.sql";
+const sql_file = "central_data_2/central_data_2.sql";
 
 
 
@@ -12,39 +12,50 @@ export default function Builder2() {
   const [error, setError] = useState('');
   const [query, setQuery] = useState('');
 
-  const extractInsertValues = (sql, tableName) => {
+  const extractAllInsertValues = (sql, tableName) => {
     const insertRegex = new RegExp(
       `INSERT INTO\\s+${tableName}\\s*\\([^)]*\\)\\s*VALUES\\s*`,
-      'i'
+      'gi'
     );
-    const match = insertRegex.exec(sql);
-    if (!match) {
-      return null;
+    const valuesBlocks = [];
+    let match = insertRegex.exec(sql);
+
+    while (match) {
+      let inString = false;
+      const startIndex = match.index + match[0].length;
+      let endIndex = -1;
+
+      for (let i = startIndex; i < sql.length; i += 1) {
+        const char = sql[i];
+        const nextChar = sql[i + 1];
+
+        if (char === "'" && inString && nextChar === "'") {
+          i += 1;
+          continue;
+        }
+
+        if (char === "'") {
+          inString = !inString;
+          continue;
+        }
+
+        if (!inString && char === ';') {
+          endIndex = i;
+          break;
+        }
+      }
+
+      if (endIndex !== -1) {
+        valuesBlocks.push(sql.slice(startIndex, endIndex).trim());
+        insertRegex.lastIndex = endIndex + 1;
+      } else {
+        break;
+      }
+
+      match = insertRegex.exec(sql);
     }
 
-    let inString = false;
-    const startIndex = match.index + match[0].length;
-
-    for (let i = startIndex; i < sql.length; i += 1) {
-      const char = sql[i];
-      const nextChar = sql[i + 1];
-
-      if (char === "'" && inString && nextChar === "'") {
-        i += 1;
-        continue;
-      }
-
-      if (char === "'") {
-        inString = !inString;
-        continue;
-      }
-
-      if (!inString && char === ';') {
-        return sql.slice(startIndex, i).trim();
-      }
-    }
-
-    return null;
+    return valuesBlocks;
   };
 
   const extractTuples = (valuesText) => {
@@ -107,9 +118,9 @@ export default function Builder2() {
     const categories = [];
     const relatedWords = [];
 
-    const categoriesInsert = extractInsertValues(sqlText, 'categories');
-    if (categoriesInsert) {
-      const tuples = extractTuples(categoriesInsert);
+    const categoriesInserts = extractAllInsertValues(sqlText, 'categories');
+    if (categoriesInserts.length > 0) {
+      const tuples = categoriesInserts.flatMap((block) => extractTuples(block));
       tuples.forEach((tuple) => {
         const parts = tuple
           .split(/,(?=(?:[^']*'[^']*')*[^']*$)/)
@@ -123,9 +134,9 @@ export default function Builder2() {
       });
     }
 
-    const relatedInsert = extractInsertValues(sqlText, 'related_words');
-    if (relatedInsert) {
-      const tuples = extractTuples(relatedInsert);
+    const relatedInserts = extractAllInsertValues(sqlText, 'related_words');
+    if (relatedInserts.length > 0) {
+      const tuples = relatedInserts.flatMap((block) => extractTuples(block));
       tuples.forEach((tuple) => {
         const parts = tuple
           .split(/,(?=(?:[^']*'[^']*')*[^']*$)/)
