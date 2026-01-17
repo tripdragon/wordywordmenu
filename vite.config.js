@@ -4,7 +4,8 @@ import { defineConfig } from 'vite'
 
 export default {
   // depending on your application, base can also be "/"
-  base: './',
+  // base: './',
+  base: '/wordywordmenu',
   plugins: [react(), viteTsconfigPaths()],
   server: {    
       // this ensures that the browser opens upon server start
