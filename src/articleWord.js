@@ -3,7 +3,6 @@
 // ArticleWord
 
 import { useState } from 'react';
-import DefinitionCard from './definitionCard.js';
 
 export default function ArticleWord({ title, definition, article, useToggle = false }) {
   

@@ -1,6 +1,5 @@
 
 // import { Personas } from './personas.js';
-import { CATEGORIES } from './categories.js';
 
 /*
 

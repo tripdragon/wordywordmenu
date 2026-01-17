@@ -10,9 +10,6 @@ import { Personas } from './personas.js';
 
 
 export function DefinitionCard({title}){
-  
-  let currentPersona = Personas.set.base;
-  
   const [persona,setPersona] = useState(Personas.set.base);
 
 

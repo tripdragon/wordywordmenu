@@ -1,8 +1,6 @@
 
 import './styles/searchInput.scss';
 
-import {useEffect} from "react";
-
 
 export default function SearchInput(){
   

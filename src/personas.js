@@ -8,13 +8,6 @@ export const Personas = {
 }
 
 
-class Persona{
-  constructor({ name }){
-    this.name = name;
-  }
-}
-
-
 // function changePersona(per){
 //   setPersona(per);
 // }

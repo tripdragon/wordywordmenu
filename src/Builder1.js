@@ -1,19 +1,11 @@
 
 import { useState } from 'react';
 
-
-
-import { WORDS } from './wordmenu.js';
-
-import { shortDatabase } from './shortDatabase.js';
 import ArticleWord from './articleWord.js';
 import SearchInput from './searchInput.js';
 
 
 // import { Personas } from './personas.js';
-
-import { DefinitionCard } from './definitionCard.js';
-import DataInputs from './dataInputs.js';
 
 import { _o } from './appData.js';
 window._o = _o;
@@ -37,17 +29,10 @@ function buildKeys(data){
   }
 }
 buildKeys(_o.categories.technology);
-let key_tech = _o.categories.technology[_o.categories.technology.length-1].key;
-
 
 buildKeys(_o.categories.boardgames);
-let key_boardgames = _o.categories.boardgames[_o.categories.boardgames.length-1].key;
-
 buildKeys(_o.categories.cooking);
-let key_cooking = _o.categories.cooking[_o.categories.cooking.length-1].key;
-
 buildKeys(_o.categories.arts);
-let key_arts = _o.categories.arts[_o.categories.arts.length-1].key;
 
 
 
@@ -98,24 +83,9 @@ export default function Builder1() {
   var tempSearchArray = [];
   
   
-  const [tech, setTech] = useState(_o.categories.technology);
-  
-  const [boardgames, setBoardgames] = useState(_o.categories.boardgames);
-  
   const [ensemble, setEnsemble] = useState(_o.currentEnsemble);
   
   
-  
-  
-  function addArticle(ev){
-    ev.preventDefault();
-    
-    key_tech++;
-    console.log("sdkjnfd", key_tech, ev.target.title.value, ev.target.definition.value);
-    _o.technology.push({key:key_tech,title:ev.target.title.value, definition:ev.target.definition.value})
-    // reverse here to debug with on top
-    setTech([..._o.technology].reverse())
-  }
   
   
   // BAaaaasic search feature
